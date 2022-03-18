@@ -30,10 +30,10 @@ kubectl create secret generic mcsps-webex-receiver -n cattle-monitoring-system \
 ```
 spec:
   name: Webex Teams
-  webhook_configs:
-    - http_config:
-        tls_config: {}
-      send_resolved: true
+  webhookConfigs:
+    - httpConfig:
+        tlsConfig: {}
+      sendResolved: true
       url: >-
         http://mcsps-webex-receiver.cattle-monitoring-system.svc.cluster.local:9091/alertmanager
 ```
