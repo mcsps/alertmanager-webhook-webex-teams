@@ -1,7 +1,6 @@
 from flask import Flask, request
 from jinja2.utils import markupsafe
-markupsafe.Markup()
-Markup('')
+from markupsafe import Markup
 from os import environ
 from werkzeug.exceptions import HTTPException
 import pycurl
