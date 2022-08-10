@@ -1,4 +1,5 @@
 from flask import Flask, request
+from jinja2.utils import markupsafe
 from os import environ
 from werkzeug.exceptions import HTTPException
 import pycurl
