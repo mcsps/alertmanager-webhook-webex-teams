@@ -1,6 +1,6 @@
 from flask import Flask, request
-from jinja2.utils import markupsafe
-from markupsafe import Markup
+#from jinja2.utils import markupsafe
+#from markupsafe import Markup
 from os import environ
 from werkzeug.exceptions import HTTPException
 import pycurl
