@@ -23,7 +23,7 @@ spec:
         app: mcsps-webex-receiver
     spec:
       containers:
-      - image: mtr.external.otc.telekomcloud.com/mcsps/python-flask:latest
+      - image: mtr.devops.telekom.de/mcsps/python-flask:latest
         imagePullPolicy: IfNotPresent
         name: stats
         ports:
