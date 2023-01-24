@@ -1,0 +1,28 @@
+name: CI
+# https://github.com/actions/virtual-environments
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: build
+        run: |
+          docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" ${MTR}
+          export TAG=`git describe --match=$(git rev-parse --short=8 HEAD) --always --dirty --abbrev=8`
+          ## fix for "layer does not exists" error
+          ## https://github.com/moby/moby/issues/37965 
+          export DOCKER_BUILDKIT=1
+          docker build -f Dockerfile -t ${MTR}/${REPO}/${IMAGE}:${TAG} .
+          docker push ${MTR}/${REPO}/${IMAGE}:${TAG}
+          cosign sign --key env://COSIGN_KEY ${MTR}/${REPO}/${IMAGE}:${TAG}
+        env:
+          DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+          MTR: mtr.devops.telekom.de
+          REPO: caas
+          IMAGE: webhook-webex
+          COSIGN_KEY: ${{secrets.COSIGN_KEY}}

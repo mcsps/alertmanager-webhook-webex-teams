@@ -1,0 +1,22 @@
+# flask & mysql & jinja templates
+click
+Flask
+gunicorn
+itsdangerous
+Jinja2
+MarkupSafe
+mysqlclient
+waitress
+Werkzeug
+# matrix webhook bot
+markdown
+matrix-nio
+# flask input validation
+marshmallow
+# flask email
+flask_mail
+# monitoring
+prometheus_client
+flask-prometheus
+# curl
+pycurl
