@@ -5,7 +5,7 @@ LABEL description="Alertmanager Webhook Webex Teams"
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get -y upgrade
-RUN apt-get install -y -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confnew vim-tiny python3-venv python3-dev net-tools libssl-dev curl libcurl4-openssl-dev
+RUN apt-get install -y -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confnew vim-tiny python3-venv python3-dev net-tools libssl-dev curl libcurl4-openssl-dev gcc
 
 COPY webex/webex.py /home/appuser
 COPY webex/wsgi.py /home/appuser
