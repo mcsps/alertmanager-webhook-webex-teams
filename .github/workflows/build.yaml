@@ -14,7 +14,8 @@ jobs:
       - name: Build
         run: |
           docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" ${MTR}
-          export TAG=`git describe --match=$(git rev-parse --short=8 HEAD) --always --dirty --abbrev=8`
+          # export TAG=`git describe --match=$(git rev-parse --short=8 HEAD) --always --dirty --abbrev=8`
+          export TAG=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
           ## fix for "layer does not exists" error
           ## https://github.com/moby/moby/issues/37965 
           export DOCKER_BUILDKIT=1
