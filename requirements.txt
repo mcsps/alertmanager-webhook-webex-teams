@@ -5,7 +5,6 @@ gunicorn
 itsdangerous
 Jinja2
 MarkupSafe
-mysqlclient
 waitress
 Werkzeug
 # matrix webhook bot
