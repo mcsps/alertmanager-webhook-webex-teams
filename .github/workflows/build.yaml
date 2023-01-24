@@ -9,7 +9,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: build
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@main
+      - name: Build
         run: |
           docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" ${MTR}
           export TAG=`git describe --match=$(git rev-parse --short=8 HEAD) --always --dirty --abbrev=8`
