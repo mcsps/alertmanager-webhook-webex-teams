@@ -23,6 +23,6 @@ jobs:
           DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
           DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
           MTR: mtr.devops.telekom.de
-          REPO: caas
+          REPO: mcsps
           IMAGE: webhook-webex
           COSIGN_KEY: ${{secrets.COSIGN_KEY}}
