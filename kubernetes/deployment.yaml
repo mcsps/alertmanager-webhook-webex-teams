@@ -23,7 +23,7 @@ spec:
         app: mcsps-webex-receiver
     spec:
       containers:
-      - image: mtr.devops.telekom.de/mcsps/webhook-webex:0.0.2
+      - image: mtr.devops.telekom.de/mcsps/webhook-webex:2.0.0
         imagePullPolicy: IfNotPresent
         name: webex
         ports:
