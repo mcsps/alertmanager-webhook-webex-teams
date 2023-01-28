@@ -25,37 +25,12 @@ kubectl create secret generic mcsps-webex-receiver -n cattle-monitoring-system \
   --from-literal=WEBEX_ROOM='ZZZZZZZZZZZZ'
 ```
 
-5. Create a new receiver to the Prometheus Alertmanager:
+5. Review namespace settings and apply workload and service to K8S
 
 ```
-spec:
-  name: Webex Teams
-  webhookConfigs:
-    - httpConfig:
-        tlsConfig: {}
-      sendResolved: true
-      url: >-
-        http://mcsps-webex-receiver.cattle-monitoring-system.svc.cluster.local:9091/alertmanager
-```
-
-6. Apply workload and service to K8S
-
-```
-kubectl -n cattle-monitoring-system apply -f kubernetes/deployment.yaml
-kubectl -n cattle-monitoring-system apply -f kubernetes/service.yaml
-```
-
-7. Create routes in Prometheus Alertmanager which alarms should be notified
-
-```
-spec:
-  receiver: Webex Teams
-  group_by: []
-  group_wait: 30s
-  group_interval: 5m
-  repeat_interval: 4h
-  match:
-    severity: critical
+kubectl -n demoapp apply -f kubernetes/deployment.yaml
+kubectl -n demoapp apply -f kubernetes/service.yaml
+kubectl -n demoapp apply -f kubernetes/alertmanagerconfig.yaml
 ```
 
 
@@ -69,6 +44,9 @@ another location.
 * Only some basic labels are handled in webex/webex.py. This can be extend
 or more minimized.
 Webex API supports [text and markdown message format](https://developer.webex.com/docs/api/basics).
+
+* Feature is [on the way](https://github.com/prometheus-operator/prometheus-operator/pull/5305)
+in Prometheus Operator/Alertmanager, so this app will go obseleted
 
 
 Credits

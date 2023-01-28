@@ -31,7 +31,7 @@ spec:
         env:
         # possible proxy configuration for Webex-API
         # - name: https_proxy
-        #   value: "xxxx"
+        #   value: "http://10.105.124.65:8084"
         - name: PYTHONUNBUFFERED
           value: "1"
         - name: WEBHOOKPORT
