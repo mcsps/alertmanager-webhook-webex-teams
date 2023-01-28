@@ -23,7 +23,7 @@ spec:
         app: mcsps-webex-receiver
     spec:
       containers:
-      - image: mtr.devops.telekom.de/mcsps/webhook-webex:0.0.2
+      - image: mtr.devops.telekom.de/mcsps/webhook-webex:2.0.0
         imagePullPolicy: IfNotPresent
         name: webex
         ports:
@@ -31,7 +31,7 @@ spec:
         env:
         # possible proxy configuration for Webex-API
         # - name: https_proxy
-        #   value: "xxxx"
+        #   value: "http://10.105.124.65:8084"
         - name: PYTHONUNBUFFERED
           value: "1"
         - name: WEBHOOKPORT

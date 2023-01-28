@@ -1,0 +1,32 @@
+# https://docs.openshift.com/container-platform/4.7/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1alpha1.html
+---
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  name: webex
+  namespace: demoapp
+spec:
+  receivers:
+  - name: "null"
+  - name: webex
+    webhookConfigs:
+    - httpConfig:
+        tlsConfig: {}
+      sendResolved: true
+      url: http://mcsps-webex-receiver.demoapp.svc.cluster.local:9091/alertmanager
+  route:
+    continue: true
+    groupBy: ['job']
+    groupWait: 30s
+    groupInterval: 2h
+    repeatInterval: 2h
+    receiver: "null"
+    routes:
+    - continue: true
+      group_interval: 5m
+      group_wait: 30s
+      matchers:
+        - name: severity
+          value: critical
+      match_re: {}
+      receiver: webex
